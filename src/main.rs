@@ -5,7 +5,7 @@ use std::{thread, time};
 fn fan_control(on: bool) {}
 
 fn main() {
-    let filename = "/sys/class/thermal/thermal_zone0/temp";
+    let filename = fs::read_to_string("filename").expect("Something went wrong reading the temperature");
     let sleep_time = time::Duration::from_millis(1000);
     let cooling_start = 65;
     let cooling_stop = 45;
@@ -13,7 +13,9 @@ fn main() {
 
     loop {
         let contents =
-            fs::read_to_string(filename).expect("Something went wrong reading the temperature");
+            fs::read_to_string(&filename).expect("Something went wrong reading the temperature");
+
+            println!("{}", contents);
 
         let temperature = (contents.parse::<i32>().unwrap()) / 1000;
 
