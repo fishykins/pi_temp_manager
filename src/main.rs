@@ -4,12 +4,18 @@ use std::{thread, time};
 
 fn fan_control(on: bool) {}
 
+fn remove_whitespace(s: &mut String) {
+    s.retain(|c| !c.is_whitespace());
+}
+
 fn main() {
-    let filename = fs::read_to_string("filename").expect("No file pointer provided");
+    let mut filename = fs::read_to_string("filename").expect("No file pointer provided");
     let sleep_time = time::Duration::from_millis(1000);
     let cooling_start = 65;
     let cooling_stop = 45;
     let mut is_cooling = false;
+
+    remove_whitespace(&mut filename);
 
     println!("{}", filename);
 
