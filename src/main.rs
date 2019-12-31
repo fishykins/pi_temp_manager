@@ -5,7 +5,7 @@ use std::{thread, time};
 fn fan_control(on: bool) {}
 
 fn main() {
-    let filename = "test";
+    let filename = "/sys/class/thermal/thermal_zone0/temp";
     let sleep_time = time::Duration::from_millis(1000);
     let cooling_start = 65;
     let cooling_stop = 45;
