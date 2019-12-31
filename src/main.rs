@@ -5,15 +5,17 @@ use std::{thread, time};
 fn fan_control(on: bool) {}
 
 fn main() {
-    let filename = fs::read_to_string("filename").expect("Something went wrong reading the temperature");
+    let filename = fs::read_to_string("filename").expect("No file pointer provided");
     let sleep_time = time::Duration::from_millis(1000);
     let cooling_start = 65;
     let cooling_stop = 45;
     let mut is_cooling = false;
 
+    println!("{}", filename);
+
     loop {
         let contents =
-            fs::read_to_string(&filename).expect("Something went wrong reading the temperature");
+            fs::read_to_string(&filename).expect("Something went wrong reading the temperature file");
 
             println!("{}", contents);
 
