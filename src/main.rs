@@ -20,10 +20,11 @@ fn main() {
     println!("{}", filename);
 
     loop {
-        let contents =
+        let mut contents =
             fs::read_to_string(&filename).expect("Something went wrong reading the temperature file");
 
             println!("{}", contents);
+            remove_whitespace(&mut contents);
 
         let temperature = (contents.parse::<i32>().unwrap()) / 1000;
 
